@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claquete | Filmes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;800;900&family=Roboto+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="topbar">
+
+        <a href="#" class="brand" id="brand">
+            <span class="brand-icon">▱</span>
+            <span>Claquete</span>
+        </a>
+
+        <nav class="main-nav">
+            <button data-nav="catalogo">Filmes</button>
+            <button data-nav="assistidos">Assistidos</button>
+            <button data-nav="desejos">Desejos</button>
+            <button data-nav="personagens">Personagens</button>
+        </nav>
+
+        <!-- TROCA DE CORES -->
+        <div class="themes">
+
+            <button class="theme-dot active"
+                data-theme="noite"
+                aria-label="Tema original"></button>
+
+            <button class="theme-dot"
+                data-theme="vermelho"
+                aria-label="Tema vermelho"></button>
+
+            <button class="theme-dot"
+                data-theme="dourado"
+                aria-label="Tema dourado"></button>
+
+            <button class="theme-dot"
+                data-theme="azul"
+                aria-label="Tema azul"></button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- DESTAQUE PRINCIPAL -->
+        <section class="hero" id="inicio">
+
+            <div class="hero-shade"></div>
+
+            <div class="hero-content">
+
+                <p class="eyebrow" id="heroEyebrow">SKIN TERROR</p>
+
+                <h1 id="heroTitle">Apague as luzes.</h1>
+
+                <p class="hero-subtitle" id="heroSubtitle">
+                    Anote cada susto, dê nota para cada pesadelo.
+                </p>
+
+                <div class="hero-genres">
+
+                    <button class="genre-button selected" data-filter="Terror">
+                        Terror
+                    </button>
+
+                    <button class="genre-button" data-filter="Romance">
+                        Romance
+                    </button>
+
+                    <button class="genre-button" data-filter="Ação">
+                        Ação
+                    </button>
+
+                    <button class="genre-button" data-filter="Suspense">
+                        Suspense
+                    </button>
+
+                </div>
+
+                <div class="stats">
+
+                    <div>
+                        <span>ASSISTIDOS</span>
+                        <strong id="watchedCount">0</strong>
+                    </div>
+
+                    <div>
+                        <span>DESEJOS</span>
+                        <strong id="wishCount">0</strong>
+                    </div>
+
+                    <div>
+                        <span>NOTA MÉDIA</span>
+                        <strong id="averageRating">—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATÁLOGO -->
+        <section class="catalog-section" id="catalogo">
+
+            <div class="section-top">
+
+                <div>
+                    <p class="eyebrow">EM CARTAZ</p>
+                    <h2 id="catalogTitle">Explorar filmes</h2>
+                </div>
+
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Buscar filme ou diretor..."
+                    >
+                </label>
+
+            </div>
+
+
+            <!-- FILTROS -->
+            <div class="filter-row">
+
+                <button class="filter-button active" data-filter="Todos">
+                    Todos
+                </button>
+
+                <button class="filter-button" data-filter="Terror">
+                    Terror
+                </button>
+
+                <button class="filter-button" data-filter="Romance">
+                    Romance
+                </button>
+
+                <button class="filter-button" data-filter="Ação">
+                    Ação
+                </button>
+
+                <button class="filter-button" data-filter="Suspense">
+                    Suspense
+                </button>
+
+            </div>
+
+
+            <!-- FILMES GERADOS PELO JAVASCRIPT -->
+            <div class="movie-grid" id="movieGrid"></div>
+
+            <p class="empty-state" id="emptyState" hidden>
+                Nenhum filme encontrado.
+            </p>
+
+        </section>
+
+
+        <!-- PERSONAGENS -->
+        <section class="characters-section" id="personagens">
+
+            <div class="character-intro">
+
+                <p class="eyebrow">POR TRÁS DAS HISTÓRIAS</p>
+
+                <h2>Personagens inesquecíveis</h2>
+
+                <p>
+                    Descubra os personagens que fazem cada filme
+                    ficar na memória.
+                </p>
+
+            </div>
+
+            <div class="character-list">
+
+                <article>
+                    <span>01</span>
+                    <strong>O brilho do terror</strong>
+                    <small>Personagens que arrepiam</small>
+                </article>
+
+                <article>
+                    <span>02</span>
+                    <strong>Heróis de ação</strong>
+                    <small>Coragem em cada cena</small>
+                </article>
+
+                <article>
+                    <span>03</span>
+                    <strong>Amores do cinema</strong>
+                    <small>Histórias que emocionam</small>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- DETALHES DO FILME -->
+    <div class="modal" id="movieModal" aria-hidden="true">
+
+        <div class="modal-backdrop" data-close-modal></div>
+
+        <section class="modal-card"
+            role="dialog"
+            aria-modal="true">
+
+            <button class="modal-close" data-close-modal>×</button>
+
+            <img id="modalPoster" src="" alt="">
+
+            <div class="modal-info">
+
+                <p class="eyebrow" id="modalGenre"></p>
+
+                <h2 id="modalTitle"></h2>
+
+                <p class="modal-meta" id="modalMeta"></p>
+
+                <p id="modalDescription"></p>
+
+                <div class="rating-control">
+
+                    <label for="ratingSelect">Sua nota:</label>
+
+                    <select id="ratingSelect">
+                        <option value="">Sem nota</option>
+                        <option value="1">1 estrela</option>
+                        <option value="2">2 estrelas</option>
+                        <option value="3">3 estrelas</option>
+                        <option value="4">4 estrelas</option>
+                        <option value="5">5 estrelas</option>
+                    </select>
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button class="action-button primary" id="watchedButton">
+                        Marcar como assistido
+                    </button>
+
+                    <button class="action-button" id="favoriteButton">
+                        ♡ Adicionar aos desejos
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <footer>
+        <span>CLAQUETE</span>
+        <span>Seu próximo filme favorito está aqui.</span>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
